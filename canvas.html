@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>canvas</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+	<canvas id="Canvas" width="600px" height="600px"></canvas>
+<script>
+	var MyCan=document.getElementById("Canvas");
+	var ctent=MyCan.getContext("2d");
+	
+	// 外圈渐变色
+	var gra=ctent.createLinearGradient(200,100,200,300);
+	gra.addColorStop(0,"#4FE9FF");
+	gra.addColorStop(1,"#3E3DEC");
+	
+	//底部
+	ctent.beginPath();
+	ctent.arc(200,200,100,0,2*Math.PI);
+	ctent.fillStyle="#161f48";
+	ctent.fill();
+	
+	//外部圆环
+	ctent.beginPath();
+	ctent.arc(200,200,100,1.5*Math.PI,3.5*Math.PI);
+	ctent.lineWidth=20;
+	ctent.strokeStyle=gra;
+	ctent.stroke();
+	
+    ctent.textAlign="center";
+	ctent.fillStyle="#ccc";
+	ctent.font="20px 宋体";
+	ctent.fillText("活跃买家数",200,150);
+	ctent.fillText("新客占比",200,230);
+	
+	ctent.fillStyle="white";
+	ctent.font="23px Arial";
+	ctent.fillText("888,888,888",200,185);
+	ctent.fillText("3.33%",200,265);
+	
+	// 横线渐变色
+	var graCen=ctent.createLinearGradient(120,200,280,200);
+	graCen.addColorStop(0,"#161f48");
+	graCen.addColorStop(0.5,"#949dc5");
+	graCen.addColorStop(1,"#161f48");
+	
+	//横线
+	ctent.beginPath();
+	ctent.lineWidth=1;
+	ctent.strokeStyle=graCen;
+	ctent.moveTo(130,200);
+    ctent.lineTo(270,200);
+	ctent.stroke();
+	
+</script>
+</body>
+</html>

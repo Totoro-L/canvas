@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>canvas</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+	<canvas id="Canvas" width="600px" height="600px"></canvas>
+<script>
+	var MyCan=document.getElementById("Canvas");
+	var ctent=MyCan.getContext("2d");
+	
+	//文字
+	function cenfont(x){
+		ctent.textBaseline="middle";
+		ctent.textAlign="center";
+		ctent.fillStyle="#1b89f1";
+		ctent.font="23px Arial";
+		ctent.fillText(x+"%",200,200);
+	}
+	
+	// 外圈渐变色
+	var gra=ctent.createLinearGradient(200,100,200,300);
+	gra.addColorStop(0,"#4FE9FF");
+	gra.addColorStop(1,"#3E3DEC");
+	
+	//外部圆环
+	function outcircle(x){
+		ctent.clearRect(50,50,400,400);
+		ctent.beginPath();
+		ctent.arc(200,200,100,1.5*Math.PI,(1.5+x*2)*Math.PI,false);
+		ctent.lineWidth=20;
+		ctent.strokeStyle=gra;
+		ctent.stroke();
+	}
+	
+	var progress=0;
+	var x=0;
+	function step() {
+		window.requestAnimationFrame(step);
+		progress+=1;
+		if (progress==4) {
+			progress=0;
+			x+=1;
+			outcircle(x*0.01);
+			cenfont(x);
+			if(x==100)
+				x=0;
+		}
+	}
+	window.requestAnimationFrame(step);
+</script>
+</body>
+</html>
